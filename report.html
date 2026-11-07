@@ -8,7 +8,7 @@ h1{font-size:28px;margin-bottom:4px} h2{font-size:20px;margin-top:36px;border-bo
 table{border-collapse:collapse;font-size:13px;margin:12px 0} th,td{border-bottom:1px solid #E2E8F0;padding:6px 10px;text-align:left} th{background:#F8FAFC}
 img{max-width:100%;border:1px solid #E2E8F0;border-radius:6px;margin:8px 0} .warn{background:#FEF3C7;padding:8px 12px;border-radius:6px}
 code{background:#F1F5F9;padding:1px 4px;border-radius:3px} ul{margin-top:4px}
-</style></head><body>
+details{margin:12px 0}summary{cursor:pointer;color:#0F766E}</style></head><body>
 <h1>Going Rate: what will this flat rent for?</h1>
 <p class="sub">Team matcha cake - Microburbs Hackathon, Task 4. Weekly asking rent for 65,777 City of Sydney flats, with and without a car space.</p>
 
@@ -19,13 +19,25 @@ code{background:#F1F5F9;padding:1px 4px;border-radius:3px} ul{margin-top:4px}
 <div><b>0.86</b>held-out R<sup>2</sup><br><span class="sub">vs 0.645 example report</span></div>
 </div>
 
+<h2>In short</h2>
+<p><b>Going Rate</b> estimates the weekly asking rent of every one of the 65,777 City of Sydney flats in the brief, with and without a car space. It is built for renters: type an address, see the estimate, the likely range, how the number was built up, and the real adverts behind it.</p>
+<ul>
+<li><b>How accurate:</b> tested on 4,083 adverts it never saw, the typical miss is <b>$49 a week</b>, against $86 for Microburbs' own model and $100 for a suburb-median baseline. 77% of estimates land within $100.</li>
+<li><b>What drives it:</b> each flat's own advertising history, what its building has rented for, and nearby adverts. A gradient-boosted model trained to minimise the median miss (the metric being scored) combines them.</li>
+<li><b>Where it is weaker:</b> 2- and 3-bedroom flats and flats that have never been advertised.</li>
+</ul>
+<img src="docs/assets/app.jpg" alt="Going Rate app: a flat in Pyrmont with its estimate, likely range and street photo">
+<p class="sub">The app: <a href="https://matcha-cake-rent.vercel.app">matcha-cake-rent.vercel.app</a>. Code: <code>app/</code>.</p>
+
 <h2>Insight 1: what a car space is worth, suburb by suburb</h2>
-<p>The parking premium is the gap between the model's two predictions for the same flat. It is anchored on adverts for the <em>same building and bedroom count</em> with and without parking where those exist, and on suburb x bedroom differences otherwise. Highest premiums: Barangaroo ($166), Dawes Point ($124), The Rocks (Sydney - Nsw) ($103), Woolloomooloo ($63), Darlinghurst ($63). Lowest: Rosebery (Nsw) ($19), St Peters (Nsw) ($19), Forest Lodge ($20).</p>
+<p>A car space is worth very different amounts across the city. In older inner-east suburbs where buildings rarely have garages, it adds about <b>8% to the rent</b>: $61 a week in Potts Point, $63 in Darlinghurst and Woolloomooloo. In new-tower suburbs where most flats come with one, it adds about <b>2%</b>: $22 in Waterloo, $23 in Zetland, $19 in Rosebery. Barangaroo is the outlier at $166 (9%).</p>
+<p class="sub">How it is measured: each flat is predicted twice, with and without a car space, and the premium is the gap. The model learns it from adverts with and without parking across buildings and suburbs. We also built a raw within-building comparison, but on the tuning window the model's own gap scored better, so the submitted premiums are the model's.</p>
 <img src="docs/assets/parking_premium_by_suburb.png" alt="parking premium by suburb">
 <p class="sub">Full table: <code>pipeline/out/parking_premium_by_suburb.csv</code>.</p>
 
-<h2>Insight 2: height pays</h2>
-<p>Floor comes from the supplied floor level where present, otherwise parsed from the unit number (1203 -> 12; G02 or 5 -> ground / unknown, kept conservative). Holding everything else fixed, the model puts a flat on floors 11-20 about $24/week above the same flat on the ground floor, and $28/week for floors 21+.</p>
+<h2>Insight 2: height adds a little</h2>
+<p>Holding everything else fixed, the model puts a flat on floors 11-20 about $24 a week above the same flat on the ground floor, and $28 for floors 21 and up, roughly 2-3% of rent. In raw adverts the gap is even smaller, 1-3%, because high-rise flats also tend to be smaller and newer. Height matters far less than the building and the suburb.</p>
+<p class="sub">Floor comes from the supplied floor level where present, otherwise from the unit number (1203 is floor 12).</p>
 <img src="docs/assets/floor_uplift.png" alt="floor uplift">
 <p class="sub">Full table: <code>pipeline/out/floor_premium.csv</code>.</p>
 
@@ -40,18 +52,19 @@ code{background:#F1F5F9;padding:1px 4px;border-radius:3px} ul{margin-top:4px}
 
 <h2>What we tuned, on what, and why the shift is seasonal</h2>
 <p>Frozen choices (made on Feb-Apr 2026): external feature groups dropped = mb, bond; LightGBM config = deep, target = raw; blend weight on the model vs the flat's own indexed last rent = decay; forward adjustment = none; parking-gap mix = 1.0 (1 = model's own gap, 0 = observed within-building/suburb premium); level shift = +0; plausibility clipping = off.</p>
-<p>Residual by advert month (prediction minus actual): the tuning window is roughly flat, the held-out quarter drifts upward through winter. That is a calendar pattern, not a constant bias: Sydney asking rents peak around January-February and soften through May-July, and a model that prices every flat at the cutoff month's level over-predicts the winter adverts. We therefore estimated calendar-month factors from 2019-2026 history (log monthly medians relative to a centred 13-month trend, averaged by calendar month; factors: 1: 1.028, 2: 1.032, 3: 1.022, 4: 1.007, 5: 0.998, 6: 0.993, 7: 0.987, 8: 0.985, 9: 0.979, 10: 0.990, 11: 0.995, 12: 0.985). Applied to the held-out quarter with every other choice still frozen, the factor removes the drift (median residual -0, median error $43.0); on the Feb-Apr tuning window it over-corrects by a few dollars, which is why the strictly nested procedure did not select it and why we report both numbers. The scored adverts are dated August-September 2026, one to two months after the 31 July cutoff; for that window the factor implies a small downward adjustment of about -1.1% relative to the May-July price level, and the submission applies it as a choice estimated from pre-cutoff history (added after the month-by-month residual check showed winter drift; the factors themselves were not tuned on the test window) rather than a winter-specific flat shift.</p>
+<p>Month by month, the strictly frozen model ran high through the held-out winter: +$18 in May, +$23 in June, +$27 in July. Sydney asking rents peak in summer and soften in winter, so we added a calendar-month factor estimated only from 2019-2026 adverts before the cutoff; with it the drift disappears and the typical miss is $43. We added it after seeing the drift, so we lead with the stricter $49, and it is the main judgement call for the August-September scoring window.</p>
 <img src="docs/assets/residuals_by_month.png" alt="residuals by month">
 <table><thead><tr><th>advert month</th><th>n</th><th>median(pred - actual) $</th><th>median abs err $</th><th>window</th></tr></thead><tbody><tr><td>2026-02</td><td>929</td><td>-8.5</td><td>45.2</td><td>tuning window</td></tr><tr><td>2026-03</td><td>947</td><td>-11.6</td><td>44.8</td><td>tuning window</td></tr><tr><td>2026-04</td><td>1063</td><td>-4.0</td><td>45.0</td><td>tuning window</td></tr><tr><td>2026-05</td><td>1271</td><td>+17.6</td><td>46.9</td><td>held-out</td></tr><tr><td>2026-06</td><td>1471</td><td>+23.2</td><td>48.4</td><td>held-out</td></tr><tr><td>2026-07</td><td>1341</td><td>+26.6</td><td>54.2</td><td>held-out</td></tr><tr><td>2026-05</td><td>1271</td><td>-0.1</td><td>42.1</td><td>held-out, with seasonal factor</td></tr><tr><td>2026-06</td><td>1471</td><td>+0.8</td><td>41.7</td><td>held-out, with seasonal factor</td></tr><tr><td>2026-07</td><td>1341</td><td>-1.5</td><td>46.1</td><td>held-out, with seasonal factor</td></tr></tbody></table>
 <p>Parking: adverts with a car space are harder (larger, dearer flats) and the model's with-parking predictions sit +14/week relative to without-parking ones on the held-out quarter; the median predicted gap is $38/week. The gap mix was chosen on the tuning window.</p>
-<h3>Tuning-window table (choices made here; external feature ablation)</h3>
+<details><summary><b>Full detail:</b> tuning-window table and external-data ablation</summary>
 <table><thead><tr><th>model</th><th>median abs err $</th><th>mean abs err $</th><th>within $50</th><th>within $100</th><th>within $200</th><th>R2</th><th>median(pred - actual) $</th></tr></thead><tbody><tr><td>A_group_median</td><td>100.0</td><td>144.5</td><td>32.7%</td><td>55.7%</td><td>81.0%</td><td>0.690</td><td>-45.0</td></tr><tr><td>C_all_feature_groups</td><td>47.4</td><td>78.3</td><td>52.4%</td><td>77.1%</td><td>92.9%</td><td>0.883</td><td>-10.3</td></tr><tr><td>C_without_mb</td><td>47.0</td><td>78.4</td><td>52.3%</td><td>77.2%</td><td>93.0%</td><td>0.884</td><td>-9.1</td></tr><tr><td>C_without_bond</td><td>46.7</td><td>78.4</td><td>52.0%</td><td>77.0%</td><td>92.9%</td><td>0.883</td><td>-8.1</td></tr><tr><td>C_without_sr</td><td>48.1</td><td>78.7</td><td>51.4%</td><td>77.2%</td><td>92.9%</td><td>0.884</td><td>-8.4</td></tr><tr><td>C_without_da</td><td>47.0</td><td>78.6</td><td>52.3%</td><td>77.3%</td><td>92.7%</td><td>0.883</td><td>-8.5</td></tr><tr><td>C_without_osm</td><td>48.1</td><td>78.3</td><td>51.4%</td><td>78.0%</td><td>93.0%</td><td>0.883</td><td>-8.1</td></tr><tr><td>C_base_raw</td><td>47.1</td><td>79.0</td><td>51.8%</td><td>77.1%</td><td>92.9%</td><td>0.880</td><td>-8.6</td></tr><tr><td>C_base_log</td><td>47.0</td><td>79.2</td><td>52.1%</td><td>76.9%</td><td>92.7%</td><td>0.879</td><td>-8.4</td></tr><tr><td>C_deep_raw</td><td>46.7</td><td>78.4</td><td>52.0%</td><td>77.0%</td><td>92.9%</td><td>0.883</td><td>-8.1</td></tr><tr><td>C_deep_log</td><td>47.7</td><td>78.2</td><td>52.4%</td><td>77.3%</td><td>93.0%</td><td>0.883</td><td>-9.6</td></tr><tr><td>B_last_rent</td><td>60.0</td><td>112.4</td><td>45.5%</td><td>67.9%</td><td>85.5%</td><td>0.791</td><td>-9.0</td></tr><tr><td>chosen_before_shift</td><td>45.0</td><td>77.8</td><td>53.6%</td><td>77.4%</td><td>92.9%</td><td>0.886</td><td>-8.1</td></tr><tr><td>chosen_with_shift</td><td>45.0</td><td>77.8</td><td>53.6%</td><td>77.4%</td><td>92.9%</td><td>0.886</td><td>-8.1</td></tr><tr><td>chosen_with_shift_and_clipping</td><td>45.1</td><td>77.7</td><td>53.5%</td><td>77.3%</td><td>92.9%</td><td>0.887</td><td>-7.7</td></tr></tbody></table>
+</details>
 
 <h2>Data, rules and exclusions</h2>
 <ul>
 <li>Input: 65,777 flats across 33 suburbs; every gnaf_id gets a prediction (blank answers count as wrong). Flats missing from the address/block files are predicted from suburb, bedrooms, location and any advert history that matches by gnaf_id or building address.</li>
 <li>Information rule: only adverts dated on or before 2026-07-31 are used anywhere (external data likewise). leases: 112457 rows; dropped 0 dated after 2026-07-31, 0 with unparseable date, 0 with bad/missing rent -&gt; 112457 kept The final model is refit on all 112,457 adverts dated on or before the cutoff; LightGBM rows are limited to the last 48 months, history features use everything.</li>
-<li>Own last rents older than 60 months are not used as evidence (stale rents indexed forward produced implausibly low predictions). Predictions are clipped to [max(citywide 1st percentile for the bedroom count, 0.6 x suburb x bedroom median), 1.3 x suburb x bedroom 99th percentile] when the tuning window shows this does not hurt.</li>
+<li>Own last rents older than 60 months are not used as evidence (stale rents indexed forward produced implausibly low predictions). As a sanity check the submitted file also keeps every estimate inside [the citywide 1st percentile for its bedroom count, or 0.6 x its suburb median if higher] and [1.3 x the suburb 99th percentile]. The strict tuning did not select this, and it moves well under 1% of flats; we kept it so no flat gets an implausible number.</li>
 <li>Source of this run: REAL data/.</li>
 </ul>
 
@@ -79,5 +92,5 @@ code{background:#F1F5F9;padding:1px 4px;border-radius:3px} ul{margin-top:4px}
 <li>Suburb rent series and development applications: Microburbs API (hackathon licence).</li>
 <li>Map data (c) OpenStreetMap contributors, ODbL 1.0 (supermarkets, building levels, parks, water, major roads). Train, metro and light-rail stops: hard-coded approximate coordinates for City of Sydney stations (Overpass was at capacity at run time); names from OpenStreetMap.</li>
 </ul>
-<p class="sub">Outputs: <code>rents_matcha-cake.csv</code> (scored), <code>app/public/predictions.csv</code> (app), <code>pipeline/out/holdout.json</code>, <code>pipeline/out/holdout.md</code>.</p>
+<p class="sub">Outputs: <code>rents_matcha-cake.csv</code> (scored), <code>app/private/predictions.csv</code> (app, not committed), <code>pipeline/out/holdout.json</code>, <code>pipeline/out/holdout.md</code>.</p>
 </body></html>

@@ -34,13 +34,13 @@ Our reproduction of the example report's group-median baseline lands on its publ
 
 - **Each flat's own history, indexed forward.** About three in four flats have been advertised before. Their last advertised rent, moved forward by the suburb's unit-rent trend, is the single strongest signal. Its blend weight decays with the age of that advert.
 - **A median-objective model.** The task is scored on median dollar error, so the gradient-boosted model is trained with an L1 loss rather than squared error.
-- **Parking from within the building.** The parking premium is anchored on flats in the same building with and without a car space, so it is not confounded with location.
+- **Building and neighbourhood context.** What the flat's building has rented for and the 16 nearest similar adverts are the strongest signals after the flat's own history. Each flat is predicted twice, with and without a car space, and the gap is its parking premium.
 - **Testing extra data rather than assuming it helps.** NSW bond lodgements and the Census block counts did not improve the holdout once each flat's own history was in, so we dropped them. OpenStreetMap distances and development applications were kept.
 
 ## Findings
 
-- **Parking value depends on the neighbourhood.** A car space adds about $63 a week in Darlinghurst, Potts Point and Woolloomooloo, where old terraces have no garages. It adds $19 to $23 in Rosebery, Waterloo and Zetland, where new towers have basements. In Barangaroo it adds $166.
-- **Height pays modestly.** The model's uplift for floors 21 and above is about $28 a week over ground level.
+- **Parking value depends on the neighbourhood.** A car space adds about 8% to the rent in Potts Point, Darlinghurst and Woolloomooloo, about $61 to $63 a week, where older buildings rarely have garages. It adds about 2% in Zetland, Waterloo and Rosebery, $19 to $23, where new towers have basements. Barangaroo is the outlier at $166.
+- **Height adds a little.** Holding everything else fixed, floors 21 and up add about $28 a week over the ground floor, roughly 2-3% of rent. Height matters far less than the building and the suburb.
 
 ## Data
 

@@ -161,7 +161,7 @@ h1{{font-size:28px;margin-bottom:4px}} h2{{font-size:20px;margin-top:36px;border
 table{{border-collapse:collapse;font-size:13px;margin:12px 0}} th,td{{border-bottom:1px solid #E2E8F0;padding:6px 10px;text-align:left}} th{{background:#F8FAFC}}
 img{{max-width:100%;border:1px solid #E2E8F0;border-radius:6px;margin:8px 0}} .warn{{background:#FEF3C7;padding:8px 12px;border-radius:6px}}
 code{{background:#F1F5F9;padding:1px 4px;border-radius:3px}} ul{{margin-top:4px}}
-</style></head><body>
+details{margin:12px 0}summary{cursor:pointer;color:#0F766E}</style></head><body>
 <h1>Going Rate: what will this flat rent for?</h1>
 <p class="sub">Team matcha cake - Microburbs Hackathon, Task 4. Weekly asking rent for {len(scored):,} City of Sydney flats, with and without a car space.</p>
 {mode_note}
@@ -172,13 +172,25 @@ code{{background:#F1F5F9;padding:1px 4px;border-radius:3px}} ul{{margin-top:4px}
 <div><b>{h['r2']:.2f}</b>held-out R<sup>2</sup><br><span class="sub">vs 0.645 example report</span></div>
 </div>
 
+<h2>In short</h2>
+<p><b>Going Rate</b> estimates the weekly asking rent of every one of the 65,777 City of Sydney flats in the brief, with and without a car space. It is built for renters: type an address, see the estimate, the likely range, how the number was built up, and the real adverts behind it.</p>
+<ul>
+<li><b>How accurate:</b> tested on 4,083 adverts it never saw, the typical miss is <b>$49 a week</b>, against $86 for Microburbs' own model and $100 for a suburb-median baseline. 77% of estimates land within $100.</li>
+<li><b>What drives it:</b> each flat's own advertising history, what its building has rented for, and nearby adverts. A gradient-boosted model trained to minimise the median miss (the metric being scored) combines them.</li>
+<li><b>Where it is weaker:</b> 2- and 3-bedroom flats and flats that have never been advertised.</li>
+</ul>
+<img src="docs/assets/app.jpg" alt="Going Rate app: a flat in Pyrmont with its estimate, likely range and street photo">
+<p class="sub">The app: <a href="https://matcha-cake-rent.vercel.app">matcha-cake-rent.vercel.app</a>. Code: <code>app/</code>.</p>
+
 <h2>Insight 1: what a car space is worth, suburb by suburb</h2>
-<p>The parking premium is the gap between the model's two predictions for the same flat. It is anchored on adverts for the <em>same building and bedroom count</em> with and without parking where those exist, and on suburb x bedroom differences otherwise. Highest premiums: {", ".join(f"{s} (${v:.0f})" for s, v in zip(top_prem['suburb'], top_prem['model_premium_median']))}. Lowest: {", ".join(f"{s} (${v:.0f})" for s, v in zip(low_prem['suburb'], low_prem['model_premium_median']))}.</p>
+<p>A car space is worth very different amounts across the city. In older inner-east suburbs where buildings rarely have garages, it adds about <b>8% to the rent</b>: $61 a week in Potts Point, $63 in Darlinghurst and Woolloomooloo. In new-tower suburbs where most flats come with one, it adds about <b>2%</b>: $22 in Waterloo, $23 in Zetland, $19 in Rosebery. Barangaroo is the outlier at $166 (9%).</p>
+<p class="sub">How it is measured: each flat is predicted twice, with and without a car space, and the premium is the gap. The model learns it from adverts with and without parking across buildings and suburbs. We also built a raw within-building comparison, but on the tuning window the model's own gap scored better, so the submitted premiums are the model's. Highest: {", ".join(f"{s} (${v:.0f})" for s, v in zip(top_prem['suburb'], top_prem['model_premium_median']))}.</p>
 <img src="docs/assets/parking_premium_by_suburb.png" alt="parking premium by suburb">
 <p class="sub">Full table: <code>pipeline/out/parking_premium_by_suburb.csv</code>.</p>
 
-<h2>Insight 2: height pays</h2>
-<p>Floor comes from the supplied floor level where present, otherwise parsed from the unit number (1203 -> 12; G02 or 5 -> ground / unknown, kept conservative). Holding everything else fixed, the model puts a flat on floors 11-20 about ${f11:.0f}/week above the same flat on the ground floor, and ${f21:.0f}/week for floors 21+.</p>
+<h2>Insight 2: height adds a little</h2>
+<p>Holding everything else fixed, the model puts a flat on floors 11-20 about ${f11:.0f} a week above the same flat on the ground floor, and ${f21:.0f} for floors 21 and up, roughly 2-3% of rent. In raw adverts the gap is even smaller, 1-3%, because high-rise flats also tend to be smaller and newer. Height matters far less than the building and the suburb.</p>
+<p class="sub">Floor comes from the supplied floor level where present, otherwise from the unit number (1203 is floor 12).</p>
 <img src="docs/assets/floor_uplift.png" alt="floor uplift">
 <p class="sub">Full table: <code>pipeline/out/floor_premium.csv</code>.</p>
 
@@ -193,18 +205,19 @@ code{{background:#F1F5F9;padding:1px 4px;border-radius:3px}} ul{{margin-top:4px}
 
 <h2>What we tuned, on what, and why the shift is seasonal</h2>
 <p>Frozen choices (made on Feb-Apr 2026): external feature groups dropped = {excluded}; LightGBM config = {c['lgb_cfg']}, target = {c['target']}; blend weight on the model vs the flat's own indexed last rent = {c['blend_w']}; forward adjustment = {extrap}; parking-gap mix = {c['gap_mix']} (1 = model's own gap, 0 = observed within-building/suburb premium); level shift = {c['bias_correction']:+.0f}; plausibility clipping = {"on" if c.get("clip", True) else "off"}.</p>
-<p>Residual by advert month (prediction minus actual): the tuning window is roughly flat, the held-out quarter drifts upward through winter. That is a calendar pattern, not a constant bias: Sydney asking rents peak around January-February and soften through May-July, and a model that prices every flat at the cutoff month's level over-predicts the winter adverts. We therefore estimated calendar-month factors from 2019-2026 history (log monthly medians relative to a centred 13-month trend, averaged by calendar month; factors: {season_txt}). Applied to the held-out quarter with every other choice still frozen, the factor removes the drift (median residual {hold['headline_nested_seasonal']['bias']:+.0f}, median error ${hold['headline_nested_seasonal']['median_abs_error']:.1f}); on the Feb-Apr tuning window it over-corrects by a few dollars, which is why the strictly nested procedure did not select it and why we report both numbers. The scored adverts are dated August-September 2026, one to two months after the 31 July cutoff; for that window the factor implies a small downward adjustment of about {100 * (float(np.mean([season.get(8, 1), season.get(9, 1)])) / float(np.mean([season.get(5, 1), season.get(6, 1), season.get(7, 1)])) - 1):+.1f}% relative to the May-July price level, and the submission applies it as a pre-registered choice from history rather than a winter-specific flat shift.</p>
+<p>Month by month, the strictly frozen model ran high through the held-out winter: +$18 in May, +$23 in June, +$27 in July. Sydney asking rents peak in summer and soften in winter, so we added a calendar-month factor estimated only from 2019-2026 adverts before the cutoff; with it the drift disappears and the typical miss is $43. We added it after seeing the drift, so we lead with the stricter $49, and it is the main judgement call for the August-September scoring window.</p>
 <img src="docs/assets/residuals_by_month.png" alt="residuals by month">
 {_tbl(month_rows, ["advert month", "n", "median(pred - actual) $", "median abs err $", "window"])}
 <p>Parking: adverts with a car space are harder (larger, dearer flats) and the model's with-parking predictions sit {pw - pwo:+.0f}/week relative to without-parking ones on the held-out quarter; the median predicted gap is ${bd['median_gap_predicted']:.0f}/week. The gap mix was chosen on the tuning window.</p>
-<h3>Tuning-window table (choices made here; external feature ablation)</h3>
+<details><summary><b>Full detail:</b> tuning-window table and external-data ablation</summary>
 {_tbl(inner_rows, MHDR)}
+</details>
 
 <h2>Data, rules and exclusions</h2>
 <ul>
 <li>Input: {len(scored):,} flats across {pred['suburb'].nunique()} suburbs; every gnaf_id gets a prediction (blank answers count as wrong). Flats missing from the address/block files are predicted from suburb, bedrooms, location and any advert history that matches by gnaf_id or building address.</li>
 <li>Information rule: only adverts dated on or before 2026-07-31 are used anywhere (external data likewise). {html.escape(dropped)} The final model is refit on all {n_hist:,} adverts dated on or before the cutoff; LightGBM rows are limited to the last 48 months, history features use everything.</li>
-<li>Own last rents older than 60 months are not used as evidence (stale rents indexed forward produced implausibly low predictions). Predictions are clipped to [max(citywide 1st percentile for the bedroom count, 0.6 x suburb x bedroom median), 1.3 x suburb x bedroom 99th percentile] when the tuning window shows this does not hurt.</li>
+<li>Own last rents older than 60 months are not used as evidence (stale rents indexed forward produced implausibly low predictions). As a sanity check the submitted file also keeps every estimate inside [the citywide 1st percentile for its bedroom count, or 0.6 x its suburb median if higher] and [1.3 x the suburb 99th percentile]. The strict tuning did not select this, and it moves well under 1% of flats; we kept it so no flat gets an implausible number.</li>
 <li>Source of this run: {html.escape(src)}.</li>
 </ul>
 
@@ -232,7 +245,7 @@ code{{background:#F1F5F9;padding:1px 4px;border-radius:3px}} ul{{margin-top:4px}
 <li>Suburb rent series and development applications: Microburbs API (hackathon licence).</li>
 <li>Map data (c) OpenStreetMap contributors, ODbL 1.0 (supermarkets, building levels, parks, water, major roads). Train, metro and light-rail stops: {stops_txt}.</li>
 </ul>
-<p class="sub">Outputs: <code>rents_matcha-cake.csv</code> (scored), <code>app/public/predictions.csv</code> (app), <code>pipeline/out/holdout.json</code>, <code>pipeline/out/holdout.md</code>.</p>
+<p class="sub">Outputs: <code>rents_matcha-cake.csv</code> (scored), <code>app/private/predictions.csv</code> (app, not committed), <code>pipeline/out/holdout.json</code>, <code>pipeline/out/holdout.md</code>.</p>
 </body></html>"""
     (ROOT / "report.html").write_text(doc, encoding="utf-8")
     return ROOT / "report.html"
