@@ -32,6 +32,12 @@ Our reproduction of the example report's group-median baseline lands on its publ
 
 **What we tuned and on what.** LightGBM depth, the target transform, recency weighting, the blend weight on each flat's own last rent, and the parking-gap mix were all chosen on February to April 2026 only, then frozen and scored on May to July. Without any adjustment the model ran high month by month, by $18 in May, $23 in June and $27 in July, because winter adverts ask less. We added a calendar-month factor estimated only from adverts before the training cutoff. It was added after seeing that drift, and its values were not tuned on the test window. It removes the drift, with residuals near zero in each month, and it carries into the scored August and September window. Full tables are in `report.html` and `pipeline/out/holdout.md`.
 
+
+
+
+Uploading going-rate-pitch-720p.mp4…
+
+
 ## The key steps
 
 - **Each flat's own history, indexed forward.** About three in four flats have been advertised before. Their last advertised rent, moved forward by the suburb's unit-rent trend, is the single strongest signal. Its blend weight decays with the age of that advert.
