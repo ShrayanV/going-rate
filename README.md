@@ -2,6 +2,8 @@
 
 By team matcha cake. Microburbs Hackathon, 7 November 2026. Task 4: a weekly asking-rent estimate for every flat in the City of Sydney, with and without a car space.
 
+**Demo video:** https://www.loom.com/share/c068eec2f3e041079240f31ed824eb53
+
 **Live demo:** https://matcha-cake-rent.vercel.app
 
 **Scored file:** `rents_matcha-cake.csv`, holding all 65,777 flats with no blanks, two columns of weekly rent.
@@ -58,7 +60,7 @@ Our reproduction of the example report's group-median baseline lands on its publ
 |---|---|
 | `rents_matcha-cake.csv` | scored output: `gnaf_id,rent_with_car_space,rent_without_car_space` |
 | `report.html` | insights, held-out check, method, what worked and what did not |
-| `pitch.mp4`, `demo.mp4` | videos |
+| `pitch.mp4` | 44-second pitch video; the demo video is on Loom (link at the top) |
 | `pipeline/` | the model; `pipeline/external/` fetches the open datasets |
 | `app/` | the demo app (Next.js, MapLibre) |
 
