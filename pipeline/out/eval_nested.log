@@ -1,0 +1,132 @@
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+source: REAL data/
+bonds: 59 postcode x bedroom cells <= 2026-01
+external groups: ['da', 'osm', 'sr']
+inner: train 105435 adverts <= 2026-01-31, tune on 2939 adverts to 2026-04-30
+[2026-01-31..2026-04-30] chosen: {'tuned_on': '2026-01-31..2026-04-30', 'exclude_groups': ['mb_', 'bond_'], 'lgb_cfg': 'deep', 'target': 'raw', 'blend_w': 0.25, 'extrapolate': False, 'gap_mix': 1.0, 'bias_correction': 0.0, 'growth_per_year': 0.04880952380952386, 'clip': False, 'clip_counts_tune_window': {'floor': 37, 'ceiling': 10}, 'seasonal_factors': {1: 1.0285, 2: 1.0325, 3: 1.0225, 4: 1.0066, 5: 0.9984, 6: 0.9927, 7: 0.9869, 8: 0.985, 9: 0.9792, 10: 0.9896, 11: 0.9952, 12: 0.9848}}
+bonds: 60 postcode x bedroom cells <= 2026-04
+external groups: ['da', 'osm', 'sr']
+outer: train 108374 adverts <= 2026-04-30, test 4083 adverts to 2026-07-31
+[2026-04-30..2026-07-31 (test window itself)] chosen: {'tuned_on': '2026-04-30..2026-07-31 (test window itself)', 'exclude_groups': ['mb_'], 'lgb_cfg': 'deep', 'target': 'log', 'blend_w': 0.25, 'extrapolate': 'seasonal', 'gap_mix': 0.75, 'bias_correction': 0.0, 'growth_per_year': 0.05248259860788862, 'clip': False, 'clip_counts_tune_window': {'floor': 43, 'ceiling': 13}, 'seasonal_factors': {1: 1.0264, 2: 1.0301, 3: 1.023, 4: 1.0071, 5: 0.9989, 6: 0.9932, 7: 0.9874, 8: 0.9851, 9: 0.9788, 10: 0.9885, 11: 0.9941, 12: 0.9891}}
+# Held-out check (nested)
+Headline: train on adverts <= 2026-04-30 (n=108,374), test 2026-05-01..2026-07-31 (n=4,083). All modelling choices were frozen on an earlier window (train <= 2026-01-31, tune on 2026-02-01..2026-04-30, n=2,939).
+
+**Nested held-out: median abs error $49.7, 75.9% within $100, R2 0.865** (without the frozen level shift of +0: $49.7, 75.9%).
+Tuned on the test window itself (optimistic, for reference only): $44.0, 79.3%.
+
+Frozen choices: `{"tuned_on": "2026-01-31..2026-04-30", "exclude_groups": ["mb_", "bond_"], "lgb_cfg": "deep", "target": "raw", "blend_w": 0.25, "extrapolate": false, "gap_mix": 1.0, "bias_correction": 0.0, "growth_per_year": 0.04880952380952386, "clip": false, "clip_counts_tune_window": {"floor": 37, "ceiling": 10}, "seasonal_factors": {"1": 1.0285, "2": 1.0325, "3": 1.0225, "4": 1.0066, "5": 0.9984, "6": 0.9927, "7": 0.9869, "8": 0.985, "9": 0.9792, "10": 0.9896, "11": 0.9952, "12": 0.9848}}`
+
+## Inner window (choices made here)
+| model | median abs err $ | mean abs err $ | within $50 | within $100 | within $200 | R2 | median(pred-actual) $ |
+|---|---|---|---|---|---|---|---|
+| A_group_median | 100.0 | 144.5 | 32.7% | 55.7% | 81.0% | 0.690 | -45.0 |
+| C_all_feature_groups | 47.4 | 78.3 | 52.4% | 77.1% | 92.9% | 0.883 | -10.3 |
+| C_without_mb | 47.0 | 78.4 | 52.3% | 77.2% | 93.0% | 0.884 | -9.1 |
+| C_without_bond | 46.7 | 78.4 | 52.0% | 77.0% | 92.9% | 0.883 | -8.1 |
+| C_without_sr | 48.1 | 78.7 | 51.4% | 77.2% | 92.9% | 0.884 | -8.4 |
+| C_without_da | 47.0 | 78.6 | 52.3% | 77.3% | 92.7% | 0.883 | -8.5 |
+| C_without_osm | 48.1 | 78.3 | 51.4% | 78.0% | 93.0% | 0.883 | -8.1 |
+| C_base_raw | 47.1 | 79.0 | 51.8% | 77.1% | 92.9% | 0.880 | -8.6 |
+| C_base_log | 47.0 | 79.2 | 52.1% | 76.9% | 92.7% | 0.879 | -8.4 |
+| C_deep_raw | 46.7 | 78.4 | 52.0% | 77.0% | 92.9% | 0.883 | -8.1 |
+| C_deep_log | 47.7 | 78.2 | 52.4% | 77.3% | 93.0% | 0.883 | -9.6 |
+| B_last_rent | 60.0 | 112.4 | 45.5% | 67.9% | 85.5% | 0.791 | -9.0 |
+| blend_w0.25_none | 44.8 | 78.6 | 53.5% | 77.1% | 92.7% | 0.884 | -6.6 |
+| blend_w0.5_none | 44.9 | 77.4 | 53.5% | 77.3% | 92.8% | 0.888 | -7.5 |
+| blend_w0.75_none | 46.0 | 77.4 | 52.9% | 77.2% | 92.9% | 0.888 | -7.7 |
+| blend_w1.0_none | 46.7 | 78.4 | 52.0% | 77.0% | 92.9% | 0.883 | -8.1 |
+| blend_w0.25_growth | 44.8 | 78.3 | 53.5% | 78.0% | 92.7% | 0.886 | -0.8 |
+| blend_w0.5_growth | 45.2 | 77.0 | 53.2% | 78.0% | 93.0% | 0.890 | -1.1 |
+| blend_w0.75_growth | 46.0 | 76.9 | 52.9% | 78.0% | 93.1% | 0.890 | -1.2 |
+| blend_w1.0_growth | 47.5 | 78.0 | 51.9% | 78.0% | 93.0% | 0.886 | -1.4 |
+| blend_w0.25_seasonal | 47.3 | 78.5 | 52.0% | 77.3% | 92.9% | 0.888 | +6.7 |
+| blend_w0.5_seasonal | 47.3 | 77.2 | 52.4% | 77.4% | 93.1% | 0.893 | +6.7 |
+| blend_w0.75_seasonal | 47.6 | 77.1 | 52.1% | 77.1% | 93.2% | 0.893 | +6.5 |
+| blend_w1.0_seasonal | 48.6 | 78.1 | 50.9% | 76.8% | 93.0% | 0.888 | +5.8 |
+| blend_w0.25_both | 49.4 | 79.3 | 50.5% | 77.5% | 92.8% | 0.889 | +14.1 |
+| blend_w0.5_both | 49.2 | 77.9 | 50.5% | 77.5% | 93.0% | 0.894 | +13.9 |
+| blend_w0.75_both | 49.4 | 77.6 | 50.5% | 77.3% | 93.3% | 0.894 | +13.7 |
+| blend_w1.0_both | 50.9 | 78.6 | 49.4% | 77.1% | 93.1% | 0.889 | +13.3 |
+| gap_mix_0.0 | 50.5 | 82.1 | 49.5% | 75.5% | 92.7% | 0.882 | -4.1 |
+| gap_mix_0.25 | 48.9 | 80.6 | 50.7% | 75.7% | 92.7% | 0.884 | -3.7 |
+| gap_mix_0.5 | 48.6 | 79.6 | 51.3% | 76.6% | 92.6% | 0.884 | -4.6 |
+| gap_mix_0.75 | 46.7 | 79.1 | 52.3% | 76.9% | 92.7% | 0.884 | -5.8 |
+| gap_mix_1.0 | 45.8 | 79.1 | 52.7% | 76.9% | 92.7% | 0.883 | -5.5 |
+| chosen_before_shift | 45.8 | 79.1 | 52.7% | 76.9% | 92.7% | 0.883 | -5.5 |
+| chosen_with_shift | 45.8 | 79.1 | 52.7% | 76.9% | 92.7% | 0.883 | -5.5 |
+| chosen_with_shift_and_clipping | 45.8 | 79.0 | 52.7% | 76.9% | 92.7% | 0.884 | -5.4 |
+
+## Outer window: headline (frozen choices) and reference rows
+| model | median abs err $ | mean abs err $ | within $50 | within $100 | within $200 | R2 | median(pred-actual) $ |
+|---|---|---|---|---|---|---|---|
+| A_group_median (example-report baseline) | 100.0 | 142.5 | 34.2% | 56.7% | 81.6% | 0.635 | -20.0 |
+| B_last_rent | 58.0 | 111.1 | 46.0% | 68.4% | 86.8% | 0.705 | +10.0 |
+| NESTED headline (frozen choices) | 49.7 | 79.8 | 50.2% | 75.9% | 93.0% | 0.865 | +22.2 |
+| tuned on test window itself (optimistic) | 44.0 | 75.0 | 54.4% | 79.3% | 93.7% | 0.866 | -0.4 |
+| benchmark: Microburbs model | 86 | | | 55.21% | |  | |
+| benchmark: Suburb-median baseline | 100 | | | 56.39% | |  | |
+| benchmark: Example report (group median) | 100 | | | 56.80% | | 0.645 | |
+
+## Residual diagnostics (nested headline predictions)
+median(pred - actual) by month, outer window:
+- 2026-05: n=1271 median resid +16.7, median abs err 46.8
+- 2026-06: n=1471 median resid +23.9, median abs err 47.9
+- 2026-07: n=1341 median resid +26.9, median abs err 56.4
+inner window by month (same frozen choices):
+- 2026-02: n=929 median resid -6.4, median abs err 43.4
+- 2026-03: n=947 median resid -9.4, median abs err 46.7
+- 2026-04: n=1063 median resid -1.5, median abs err 47.8
+by parking (outer):
+- with: n=2135 median resid +31.3, median abs err 60.9, within100 70.4%
+- without: n=1821 median resid +16.1, median abs err 38.2, within100 82.9%
+- unknown: n=127 median resid +30.5, median abs err 57.6, within100 67.7%
+median predicted parking gap: 37.0
+- by_bedrooms=0: n=357 median=36.5 within100=92.2%
+- by_bedrooms=1: n=1886 median=32.5 within100=86.3%
+- by_bedrooms=2: n=1575 median=75.5 within100=63.6%
+- by_bedrooms=3: n=265 median=93.0 within100=53.2%
+- has_recent_own_rent=yes: n=1533 median=38.6 within100=82.4%
+- has_recent_own_rent=no: n=2550 median=58.0 within100=72.0%
+- error buckets: {'0-25': 1169, '25-50': 882, '50-100': 1048, '100-150': 485, '150-200': 215, '200-300': 171, '300-500': 68, '500+': 45}
+
+## Feature importance (splits)
+bld_bed_median:5975, bld_ratio:5901, years_since_first_listed:5034, last_rel_suburb:3987, unit_digits:3963, last_rent_indexed:3824, months_since_last_rent:3574, nb_ratio:3366, suburb:3280, nb_level:2669, nb_ratio_other_bld:2537, osm_dist_park_m:2277, osm_dist_supermarket_m:2194, osm_dist_major_road_m:2168, osm_dist_water_m:1910, flats_per_building:1835, dist_train_m:1790, bld_bed_n:1524, lng:1479, osm_levels:1467, dist_lr_m:1406, lat:1350, dist_cbd_m:1278, bld_n:1237, da_count_300m:992

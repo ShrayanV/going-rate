@@ -1,0 +1,7 @@
+floor_band,n_leases,observed_uplift_pct_vs_ground,n_flats,model_uplift_per_week,model_median_rent_without
+ground/low,532,0.0,279,0.0,941.0
+1-2,13831,-4.8,8807,4.6,894.0
+3-5,14469,-2.3,9736,7.3,923.0
+6-10,10429,-0.9,7169,14.8,998.5
+11-20,6475,3.3,4388,23.7,1099.0
+21+,6421,1.4,4296,28.3,1087.5

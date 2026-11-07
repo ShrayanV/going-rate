@@ -1,0 +1,40 @@
+source: REAL data/
+cutoff: 2026-07-31
+
+== flats: rents-input-flats-city-of-sydney.csv  shape=(65777, 19)
+columns: gnaf_id (object), address (object), building_address (object), suburb (object), mb (int64), latitude (float64), longitude (float64), property_type (object), bedrooms (int64), bathrooms (float64), car_space (float64), car_spaces (float64), floor_level (float64), flats_in_building (int64), block_new_homes_2021_2026 (float64), block_homes_2026 (float64), ever_advertised_for_lease (int64), first_ever_listed (object), attrs_last_seen (object)
+          gnaf_id                                address   building_address      suburb           mb   latitude   longitude property_type  bedrooms  bathrooms  car_space  car_spaces  floor_level  flats_in_building  block_new_homes_2021_2026  block_homes_2026  ever_advertised_for_lease first_ever_listed attrs_last_seen
+0  GANSW718164849     1-9 WILLIAM STREET ALEXANDRIA 2015   1 WILLIAM STREET  Alexandria  11227530000 -33.910151  151.199615     apartment         2        2.0        1.0         1.0          NaN                 35                        0.0              53.0                          1        2017-05-09      2023-11-28
+1  GANSW718164848   11-13 WILLIAM STREET ALEXANDRIA 2015  11 WILLIAM STREET  Alexandria  11227530000 -33.910813  151.199228        studio         1        1.0        1.0         1.0          NaN                  7                        0.0              53.0                          1        2025-06-10      2025-06-10
+2  GANSW718318001     11-15 POWER AVENUE ALEXANDRIA 2015    11 POWER AVENUE  Alexandria  10756610000 -33.901290  151.198345     apartment         1        1.0        1.0         1.0          NaN                 47                      114.0             268.0                          1        2022-06-02      2026-05-18
+3  GANSW703904214   11-17 WYNDHAM STREET ALEXANDRIA 2015  11 WYNDHAM STREET  Alexandria  11204719400 -33.895605  151.197715          unit         2        2.0        1.0         1.0          NaN                 30                        2.0              86.0                          1        2015-05-26      2020-12-03
+4  GANSW703901892  111-117 MCEVOY STREET ALEXANDRIA 2015  111 MCEVOY STREET  Alexandria  10756610000 -33.901867  151.198543     apartment         2        2.0        1.0         1.0          NaN                 72                      114.0             268.0                          0        2019-06-25      2019-06-25
+
+== leases: rents-past-leases-city-of-sydney.csv  shape=(112457, 15)
+columns: gnaf_id (object), address (object), building_address (object), suburb (object), mb (int64), listing_date (object), weekly_rent (float64), bedrooms (float64), bathrooms (float64), car_space (float64), garage_spaces (float64), property_type (object), was_leased (int64), latitude (float64), longitude (float64)
+          gnaf_id                     address building_address  suburb           mb listing_date  weekly_rent  bedrooms  bathrooms  car_space  garage_spaces property_type  was_leased  latitude   longitude
+0  GANSW703872691  UNIT 101, 2-8 DIXON STREET   2 DIXON STREET  Sydney  10742892000   2016-07-22        440.0       NaN        1.0        1.0            1.0          unit           0 -33.87657  151.204032
+1  GANSW703872691  UNIT 101, 2-8 DIXON STREET   2 DIXON STREET  Sydney  10742892000   2018-02-17        460.0       NaN        1.0        NaN            NaN          unit           0 -33.87657  151.204032
+2  GANSW703872691  UNIT 101, 2-8 DIXON STREET   2 DIXON STREET  Sydney  10742892000   2019-12-17        430.0       0.0        1.0        0.0            0.0          unit           0 -33.87657  151.204032
+3  GANSW703872691  UNIT 101, 2-8 DIXON STREET   2 DIXON STREET  Sydney  10742892000   2020-05-10        360.0       0.0        1.0        0.0            0.0          unit           0 -33.87657  151.204032
+4  GANSW703872691  UNIT 101, 2-8 DIXON STREET   2 DIXON STREET  Sydney  10742892000   2021-01-04        360.0       0.0        1.0        0.0            0.0          unit           0 -33.87657  151.204032
+
+== blocks: blocks-homes-and-people-2021-2026.csv  shape=(2281, 8)
+columns: mb (int64), suburb (object), mb_cat (object), homes_2021 (float64), homes_2026 (float64), people_2021 (float64), people_2026 (float64), new_homes (float64)
+            mb     suburb       mb_cat  homes_2021  homes_2026  people_2021  people_2026  new_homes
+0  10742891000     Sydney  Residential       226.0       450.0        608.0        763.0      224.0
+1  10741832000     Sydney   Commercial         0.0         6.0          0.0          4.0        6.0
+2  10741850000     Sydney  Residential       231.0       253.0        233.0        249.0       22.0
+3  10741860000     Sydney   Commercial         0.0         0.0          0.0          0.0        0.0
+4  10741890000  Haymarket     Parkland         0.0         0.0          0.0          0.0        0.0
+
+flats column map: {'gnaf_id': 'gnaf_id', 'address': 'address', 'suburb': 'suburb', 'mesh_block': 'mb', 'lat': 'latitude', 'lng': 'longitude', 'bedrooms': 'bedrooms', 'bathrooms': 'bathrooms', 'car_spaces': 'car_spaces', 'flats_in_building': 'flats_in_building', 'property_type': 'property_type', 'floor_level': 'floor_level', 'building_address': 'building_address', 'first_listed': 'first_ever_listed'}
+unit_number derived from address for 64781 flats
+leases column map: {'gnaf_id': 'gnaf_id', 'address': 'address', 'suburb': 'suburb', 'date': 'listing_date', 'rent': 'weekly_rent', 'bedrooms': 'bedrooms', 'bathrooms': 'bathrooms', 'car_spaces': 'car_space', 'garage_spaces': 'garage_spaces', 'lat': 'latitude', 'lng': 'longitude', 'property_type': 'property_type', 'mesh_block': 'mb', 'building_address': 'building_address'}
+leases: 112457 rows; dropped 0 dated after 2026-07-31, 0 with unparseable date, 0 with bad/missing rent -> 112457 kept
+leases matched to input gnaf_id: 93.9%
+blocks: 2281 mesh blocks, numeric cols: ['mb_homes_2021', 'mb_homes_2026', 'mb_people_2021', 'mb_people_2026', 'mb_new_homes']
+input flats with a matching mesh block: 93.5%
+
+flats: 65777 rows, 33 suburbs; parking unknown 5793; bedrooms null 0
+leases date range: 2012-01-04 .. 2026-07-31; parking unknown 15.2%

@@ -1,0 +1,26 @@
+# secrets
+.env
+.env.local
+*.key
+# supplied hackathon files: never commit (use on the day only, no republishing)
+data/
+# API output caches
+cache/
+*.parquet
+# build / env
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.venv/
+# large media kept out until final
+*.mp4
+!pitch.mp4
+!demo.mp4
+
+# synthetic fixture + bulky pipeline outputs
+data_fixture/
+pipeline/out/predictions*.csv
+pipeline/out/rents_*_fixture.csv
+pipeline/out/*_fixture.csv
+pipeline/out/*.log

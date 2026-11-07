@@ -1,0 +1,186 @@
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+[  0.9s] loaded (REAL data/): 65777 flats, 112457 adverts <= cutoff
+bonds: 59 postcode x bedroom cells <= 2026-01
+external groups: ['da', 'osm', 'sr']
+inner: train 105435 adverts <= 2026-01-31, tune on 2939 adverts to 2026-04-30
+[2026-01-31..2026-04-30] chosen: {'tuned_on': '2026-01-31..2026-04-30', 'exclude_groups': ['mb_', 'bond_'], 'lgb_cfg': 'deep', 'target': 'raw', 'half_life': 18, 'blend_w': 'decay', 'extrapolate': False, 'gap_mix': 1.0, 'bias_correction': 0.0, 'growth_per_year': 0.04880952380952386, 'clip': False, 'clip_counts_tune_window': {'floor': 33, 'ceiling': 7}, 'seasonal_factors': {1: 1.0285, 2: 1.0325, 3: 1.0225, 4: 1.0066, 5: 0.9984, 6: 0.9927, 7: 0.9869, 8: 0.985, 9: 0.9792, 10: 0.9896, 11: 0.9952, 12: 0.9848}}
+bonds: 60 postcode x bedroom cells <= 2026-04
+external groups: ['da', 'osm', 'sr']
+outer: train 108374 adverts <= 2026-04-30, test 4083 adverts to 2026-07-31
+[2026-04-30..2026-07-31 (test window itself)] chosen: {'tuned_on': '2026-04-30..2026-07-31 (test window itself)', 'exclude_groups': ['mb_'], 'lgb_cfg': 'deep', 'target': 'log', 'half_life': 36, 'blend_w': 'decay', 'extrapolate': 'seasonal', 'gap_mix': 1.0, 'bias_correction': 0.0, 'growth_per_year': 0.05248259860788862, 'clip': False, 'clip_counts_tune_window': {'floor': 39, 'ceiling': 14}, 'seasonal_factors': {1: 1.0264, 2: 1.0301, 3: 1.023, 4: 1.0071, 5: 0.9989, 6: 0.9932, 7: 0.9874, 8: 0.9851, 9: 0.9788, 10: 0.9885, 11: 0.9941, 12: 0.9891}}
+# Held-out check (nested)
+Headline: train on adverts <= 2026-04-30 (n=108,374), test 2026-05-01..2026-07-31 (n=4,083). All modelling choices were frozen on an earlier window (train <= 2026-01-31, tune on 2026-02-01..2026-04-30, n=2,939).
+
+**Nested held-out: median abs error $49.2, 76.8% within $100, R2 0.863** (without the frozen level shift of +0: $49.2, 76.8%).
+Tuned on the test window itself (optimistic, for reference only): $43.1, 79.8%.
+
+Submission variant = frozen choices + calendar-month factor (pre-registered from 2019-2026 history, not tuned): $43.0, 79.7% within $100, median(pred-actual) -0.1 on May-Jul; on the Feb-Apr tuning window the same factor gives $45.5, 77.5%.
+
+Frozen choices: `{"tuned_on": "2026-01-31..2026-04-30", "exclude_groups": ["mb_", "bond_"], "lgb_cfg": "deep", "target": "raw", "half_life": 18, "blend_w": "decay", "extrapolate": false, "gap_mix": 1.0, "bias_correction": 0.0, "growth_per_year": 0.04880952380952386, "clip": false, "clip_counts_tune_window": {"floor": 33, "ceiling": 7}, "seasonal_factors": {"1": 1.0285, "2": 1.0325, "3": 1.0225, "4": 1.0066, "5": 0.9984, "6": 0.9927, "7": 0.9869, "8": 0.985, "9": 0.9792, "10": 0.9896, "11": 0.9952, "12": 0.9848}}`
+
+## Inner window (choices made here)
+| model | median abs err $ | mean abs err $ | within $50 | within $100 | within $200 | R2 | median(pred-actual) $ |
+|---|---|---|---|---|---|---|---|
+| A_group_median | 100.0 | 144.5 | 32.7% | 55.7% | 81.0% | 0.690 | -45.0 |
+| C_all_feature_groups | 47.4 | 78.3 | 52.4% | 77.1% | 92.9% | 0.883 | -10.3 |
+| C_without_mb | 47.0 | 78.4 | 52.3% | 77.2% | 93.0% | 0.884 | -9.1 |
+| C_without_bond | 46.7 | 78.4 | 52.0% | 77.0% | 92.9% | 0.883 | -8.1 |
+| C_without_sr | 48.1 | 78.7 | 51.4% | 77.2% | 92.9% | 0.884 | -8.4 |
+| C_without_da | 47.0 | 78.6 | 52.3% | 77.3% | 92.7% | 0.883 | -8.5 |
+| C_without_osm | 48.1 | 78.3 | 51.4% | 78.0% | 93.0% | 0.883 | -8.1 |
+| C_base_raw | 47.1 | 79.0 | 51.8% | 77.1% | 92.9% | 0.880 | -8.6 |
+| C_base_log | 47.0 | 79.2 | 52.1% | 76.9% | 92.7% | 0.879 | -8.4 |
+| C_deep_raw | 46.7 | 78.4 | 52.0% | 77.0% | 92.9% | 0.883 | -8.1 |
+| C_deep_log | 47.7 | 78.2 | 52.4% | 77.3% | 93.0% | 0.883 | -9.6 |
+| C_halflife_18m | 46.1 | 78.3 | 52.4% | 77.4% | 92.8% | 0.881 | -11.8 |
+| C_halflife_36m | 46.8 | 78.2 | 52.6% | 77.6% | 93.0% | 0.881 | -10.0 |
+| B_last_rent | 60.0 | 112.4 | 45.5% | 67.9% | 85.5% | 0.791 | -9.0 |
+| blend_w0.25_none | 45.1 | 78.9 | 53.0% | 77.3% | 92.6% | 0.880 | -9.1 |
+| blend_w0.5_none | 44.9 | 77.7 | 53.2% | 77.6% | 92.9% | 0.885 | -10.1 |
+| blend_w0.75_none | 45.3 | 77.5 | 53.3% | 77.4% | 92.9% | 0.885 | -10.6 |
+| blend_w1.0_none | 46.1 | 78.3 | 52.4% | 77.4% | 92.8% | 0.881 | -11.8 |
+| blend_wdecay_none | 43.9 | 77.2 | 54.1% | 77.7% | 92.9% | 0.887 | -8.9 |
+| blend_w0.25_growth | 45.0 | 78.4 | 53.9% | 77.6% | 92.8% | 0.883 | -2.5 |
+| blend_w0.5_growth | 46.1 | 77.0 | 53.6% | 78.1% | 93.1% | 0.887 | -3.4 |
+| blend_w0.75_growth | 46.2 | 76.8 | 53.1% | 78.2% | 93.3% | 0.888 | -3.9 |
+| blend_w1.0_growth | 47.3 | 77.6 | 52.5% | 78.0% | 93.1% | 0.883 | -4.2 |
+| blend_wdecay_growth | 44.8 | 76.7 | 54.1% | 78.0% | 93.2% | 0.889 | -2.5 |
+| blend_w0.25_seasonal | 45.4 | 78.5 | 52.3% | 77.2% | 92.9% | 0.886 | +4.5 |
+| blend_w0.5_seasonal | 45.3 | 77.0 | 52.7% | 77.4% | 93.1% | 0.890 | +4.3 |
+| blend_w0.75_seasonal | 45.5 | 76.6 | 52.8% | 77.4% | 93.3% | 0.891 | +3.4 |
+| blend_w1.0_seasonal | 46.3 | 77.3 | 52.2% | 77.2% | 93.3% | 0.886 | +3.0 |
+| blend_wdecay_seasonal | 45.5 | 76.8 | 52.8% | 77.5% | 93.0% | 0.892 | +5.4 |
+| blend_w0.25_both | 47.9 | 79.0 | 51.8% | 77.5% | 93.0% | 0.887 | +12.1 |
+| blend_w0.5_both | 47.6 | 77.5 | 52.0% | 77.7% | 93.2% | 0.892 | +11.6 |
+| blend_w0.75_both | 48.0 | 76.9 | 51.8% | 77.6% | 93.5% | 0.892 | +10.4 |
+| blend_w1.0_both | 48.4 | 77.5 | 51.4% | 77.7% | 93.5% | 0.888 | +10.6 |
+| blend_wdecay_both | 48.0 | 77.4 | 51.6% | 78.0% | 93.2% | 0.893 | +13.4 |
+| gap_mix_0.0 | 49.9 | 80.4 | 50.1% | 75.5% | 92.9% | 0.887 | -4.1 |
+| gap_mix_0.25 | 48.2 | 79.0 | 51.4% | 76.4% | 93.1% | 0.888 | -4.7 |
+| gap_mix_0.5 | 46.8 | 78.0 | 52.3% | 77.0% | 92.9% | 0.888 | -6.0 |
+| gap_mix_0.75 | 45.5 | 77.6 | 53.2% | 76.9% | 93.2% | 0.887 | -6.9 |
+| gap_mix_1.0 | 45.0 | 77.8 | 53.6% | 77.4% | 92.9% | 0.886 | -8.1 |
+| chosen_before_shift | 45.0 | 77.8 | 53.6% | 77.4% | 92.9% | 0.886 | -8.1 |
+| chosen_with_shift | 45.0 | 77.8 | 53.6% | 77.4% | 92.9% | 0.886 | -8.1 |
+| chosen_with_shift_and_clipping | 45.1 | 77.7 | 53.5% | 77.3% | 92.9% | 0.887 | -7.7 |
+
+## Outer window: headline (frozen choices) and reference rows
+| model | median abs err $ | mean abs err $ | within $50 | within $100 | within $200 | R2 | median(pred-actual) $ |
+|---|---|---|---|---|---|---|---|
+| A_group_median (example-report baseline) | 100.0 | 142.5 | 34.2% | 56.7% | 81.6% | 0.635 | -20.0 |
+| B_last_rent | 58.0 | 111.1 | 46.0% | 68.4% | 86.8% | 0.705 | +10.0 |
+| NESTED headline (frozen choices) | 49.2 | 78.7 | 50.5% | 76.8% | 93.1% | 0.863 | +22.4 |
+| NESTED + seasonal factor (submission config) | 43.0 | 74.3 | 55.5% | 79.7% | 94.0% | 0.863 | -0.1 |
+| tuned on test window itself (optimistic) | 43.1 | 73.8 | 55.2% | 79.8% | 94.3% | 0.863 | -1.3 |
+| benchmark: Microburbs model | 86 | | | 55.21% | |  | |
+| benchmark: Suburb-median baseline | 100 | | | 56.39% | |  | |
+| benchmark: Example report (group median) | 100 | | | 56.80% | | 0.645 | |
+
+## Residual diagnostics (nested headline predictions)
+median(pred - actual) by month, outer window:
+- 2026-05: n=1271 median resid +17.6, median abs err 46.9
+- 2026-06: n=1471 median resid +23.2, median abs err 48.4
+- 2026-07: n=1341 median resid +26.6, median abs err 54.2
+same, with the seasonal factor (submission config):
+- 2026-05: n=1271 median resid -0.1, median abs err 42.1
+- 2026-06: n=1471 median resid +0.8, median abs err 41.7
+- 2026-07: n=1341 median resid -1.5, median abs err 46.1
+inner window by month (same frozen choices):
+- 2026-02: n=929 median resid -8.5, median abs err 45.2
+- 2026-03: n=947 median resid -11.6, median abs err 44.8
+- 2026-04: n=1063 median resid -4.0, median abs err 45.0
+by parking (outer):
+- with: n=2135 median resid +30.2, median abs err 60.7, within100 71.4%
+- without: n=1821 median resid +16.2, median abs err 38.8, within100 83.5%
+- unknown: n=127 median resid +37.7, median abs err 60.0, within100 70.1%
+median predicted parking gap: 38.2
+- by_bedrooms=0: n=357 median=37.8 within100=92.4%
+- by_bedrooms=1: n=1886 median=33.1 within100=86.5%
+- by_bedrooms=2: n=1575 median=72.6 within100=65.7%
+- by_bedrooms=3: n=265 median=92.4 within100=52.5%
+- has_recent_own_rent=yes: n=1533 median=39.1 within100=83.2%
+- has_recent_own_rent=no: n=2550 median=56.0 within100=72.9%
+- error buckets: {'0-25': 1180, '25-50': 883, '50-100': 1072, '100-150': 484, '150-200': 184, '200-300': 167, '300-500': 66, '500+': 47}
+
+## Feature importance (splits)
+bld_ratio:5243, bld_bed_median:5228, years_since_first_listed:5033, unit_digits:3813, months_since_last_rent:3787, last_rel_suburb:3646, last_rent_indexed:3627, suburb:3235, nb_ratio:3021, nb_level:2697, nb_ratio_other_bld:2670, osm_dist_park_m:2531, osm_dist_supermarket_m:2441, osm_dist_major_road_m:2214, osm_dist_water_m:2115, dist_train_m:1902, flats_per_building:1892, bld_bed_n:1652, dist_lr_m:1569, osm_levels:1552, lng:1544, lat:1319, bld_n:1314, dist_cbd_m:1264, sr_rel:1220C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:516: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio")] = np.nanmedian(r, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\features.py:518: RuntimeWarning: All-NaN slice encountered
+  X.iloc[rows, X.columns.get_loc("nb_ratio_other_bld")] = np.nanmedian(other, axis=1)
+
+[323.8s] holdout done
+bonds: 59 postcode x bedroom cells <= 2026-07
+external groups: ['da', 'osm', 'sr']
+final predictions: horizon 2 months, forward factor 0.9851, clipped {'floor': 858, 'ceiling': 26}
+[394.0s] refit on all adverts <= 2026-07-31 (n=112457)
+computing drivers ...
+computing comps ...
+wrote C:\Users\Shrayan\Desktop\work\hackathonmad\rents_matcha-cake.csv
+wrote C:\Users\Shrayan\Desktop\work\hackathonmad\pipeline\out\predictions.csv
+wrote C:\Users\Shrayan\Desktop\work\hackathonmad\app\public\predictions.csv
+[415.8s] exported 65777 rows (REAL mode)
+[416.7s] report built
+
+=== HEADLINE ===
+data: REAL data/
+NESTED held-out (2026-05-01..2026-07-31, n=4083, choices frozen on 2026-02-01..2026-04-30): median abs error $49.2, within $100 76.8%, R2 0.863
+NESTED + seasonal factor (submission config): $43.0, 79.7%, median resid -0.1
+tuned on the test window itself (optimistic): $43.1, 79.8% | frozen choices: {'tuned_on': '2026-01-31..2026-04-30', 'exclude_groups': ['mb_', 'bond_'], 'lgb_cfg': 'deep', 'target': 'raw', 'half_life': 18, 'blend_w': 'decay', 'extrapolate': False, 'gap_mix': 1.0, 'bias_correction': 0.0, 'growth_per_year': 0.04880952380952386, 'clip': False, 'clip_counts_tune_window': {'floor': 33, 'ceiling': 7}, 'seasonal_factors': {1: 1.0285, 2: 1.0325, 3: 1.0225, 4: 1.0066, 5: 0.9984, 6: 0.9927, 7: 0.9869, 8: 0.985, 9: 0.9792, 10: 0.9896, 11: 0.9952, 12: 0.9848}}
+benchmarks: Microburbs model $86 / 55.21%; suburb-median $100 / 56.39%; example report $100 / 56.8% / R2 0.645
+predictions: median with $919, without $876, median parking premium $38
+total 416.7s
