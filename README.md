@@ -1,5 +1,11 @@
 # Going Rate: what will this flat rent for?
 
+
+
+Uploading going-rate-pitch-720p.mp4…
+
+
+
 By team matcha cake. Microburbs Hackathon, 7 November 2026. Task 4: a weekly asking-rent estimate for every flat in the City of Sydney, with and without a car space.
 
 **Demo video:** https://www.loom.com/share/c068eec2f3e041079240f31ed824eb53
